@@ -46,10 +46,16 @@ class FlutterQiblah {
   /// {"qiblah": QIBLAH, "direction": DIRECTION}
   /// Direction varies from 0-360, 0 being north.
   /// Qiblah varies from 0-360, offset from direction(North)
-  static Stream<QiblahDirection> get qiblahStream {
+  static Stream<QiblahDirection> get stream => qiblahStream();
+
+  /// Provides a stream of Map with current compass and Qiblah direction
+  /// {"qiblah": QIBLAH, "direction": DIRECTION}
+  /// Direction varies from 0-360, 0 being north.
+  /// Qiblah varies from 0-360, offset from direction(North)
+  static Stream<QiblahDirection> qiblahStream({int updateRateInMillis = 32}) {
     if (_instance._qiblahStream == null) {
       _instance._qiblahStream = _merge<CompassEvent, Position>(
-        FlutterCompass.events!,
+        FlutterCompass.events(compassUpdateRate: updateRateInMillis)!,
         Geolocator.getPositionStream(),
       );
     }

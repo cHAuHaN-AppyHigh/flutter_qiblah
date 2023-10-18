@@ -12,7 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_compass: ^0.7.0
+  flutter_compass:
+    git:
+      url: https://github.com/cHAuHaN-AppyHigh/flutter_compass
+      ref: master
   geolocator: ^9.0.2
   stream_transform: ^2.1.0
   vector_math: ^2.1.4
